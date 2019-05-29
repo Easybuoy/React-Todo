@@ -35,10 +35,15 @@ class App extends React.Component {
         task.completed = !task.completed ? true : false;
       }
     });
-    console.log(tasks);
 
     this.setState({ tasks: tasks });
-    // this.state.tasks.filter(id => )
+  };
+
+  clearCompleted = () => {
+    const { tasks } = this.state;
+    let unCompletedTasks = tasks.filter(task => task.completed !== true);
+
+    this.setState({ tasks: unCompletedTasks });
   };
 
   render() {
@@ -53,6 +58,7 @@ class App extends React.Component {
           onChange={this.onChange}
           addTodo={this.addTodo}
           task={this.state.task}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
