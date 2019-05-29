@@ -3,23 +3,11 @@
 import React from "react";
 import Todo from "./Todo";
 
-export default function TodoList() {
-  const tasks = [
-    {
-      task: "Organize Garage",
-      id: 1528817077286,
-      completed: false
-    },
-    {
-      task: "Bake Cookies",
-      id: 1528817084358,
-      completed: false
-    }
-  ];
+export default function TodoList({ tasks, toggleCompleted }) {
   return (
     <div>
       {tasks.map(task => {
-        return <Todo key={task.id} task={task} />;
+        return <Todo key={task.id} task={task} toggleCompleted ={toggleCompleted} />;
       })}
     </div>
   );

@@ -1,9 +1,20 @@
 import React from "react";
 
-export default function Todo({ task }) {
+export default function Todo({ task, toggleCompleted }) {
+  const todoStyle = {
+    cursor: "pointer",
+    textDecoration: task.completed ? "line-through" : "none"
+  };
   return (
     <div>
-      <p>{task.task}</p>
+      <p
+        onClick={() => {
+          toggleCompleted(task.id);
+        }}
+        style={todoStyle}
+      >
+        {task.task}
+      </p>
     </div>
   );
 }
