@@ -16,10 +16,10 @@
       rgba(255, 255, 255, 0.8)
     ),
     url("./todo.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  background-position: center;
 }
 
 .app h2 {
@@ -27,6 +27,17 @@
   color: #99621e;
   font-size: 3rem;
   font-weight: bolder;
+}
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topSection input {
+  margin: 0 2rem;
+  width: 30%;
+  height: 2rem;
 }
 
 .info {
@@ -45,5 +56,4 @@
 .info .infoBox p {
   padding: 0;
   margin: 0;
-  
 }

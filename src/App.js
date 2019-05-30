@@ -15,10 +15,15 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      tasks: JSON.parse(localStorage.getItem("tasks")),
-      task: ""
+      tasks: this.getTasks(),
+      task: "",
+      search: ""
     };
   }
+
+  getTasks = () => {
+    return JSON.parse(localStorage.getItem("tasks"));
+  };
 
   onChange = e => {
     this.setState({ task: e.target.value });
@@ -44,11 +49,12 @@ class App extends React.Component {
 
   toggleCompleted = id => {
     const { tasks } = this.state;
+
     tasks.find(task => {
       if (task.id === id) {
         task.completed = !task.completed ? true : false;
+        return task;
       }
-      return task;
     });
 
     this.setDataToLocalStorage(tasks);
@@ -69,27 +75,47 @@ class App extends React.Component {
     }
   };
 
+  search = e => {
+    this.setState({ tasks: this.getTasks() }, () => {});
+
+    const searchValue = e.target.value;
+    if (searchValue.length > 0) {
+      let newState = this.state.tasks.filter(task => {
+        if (task.task.includes(searchValue)) {
+          return task;
+        }
+      });
+      this.setState({ tasks: newState });
+    }
+  };
+
   render() {
     return (
       <div className="app">
-        <div className="info">
-          <p
-            className="infoBox"
-            style={{
-              backgroundColor: "green"
-            }}
-          />
-          <p>Completed</p>
-        </div>
+        <div className="topSection">
+          <div className="infoDiv">
+            <div className="info">
+              <p
+                className="infoBox"
+                style={{
+                  backgroundColor: "green"
+                }}
+              />
+              <p>Completed</p>
+            </div>
 
-        <div className="info">
-          <p
-            className="infoBox"
-            style={{
-              backgroundColor: "#99621e"
-            }}
-          />
-          <p>UnCompleted</p>
+            <div className="info">
+              <p
+                className="infoBox"
+                style={{
+                  backgroundColor: "#99621e"
+                }}
+              />
+              <p>UnCompleted</p>
+            </div>
+          </div>
+
+          <input onChange={this.search} placeholder="Search" />
         </div>
 
         <h2>Welcome to your Todo App!</h2>

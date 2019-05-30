@@ -2,14 +2,13 @@
   padding: 1rem 0;
   text-align: center;
 }
-
-.todoForm input {
+input {
   padding: 0.5rem 0.5rem;
   width: 20%;
   font-size: 1rem;
 }
 
-.todoForm input:focus {
+input:focus {
   border: 1px solid #99621e;
   outline: none;
 }
