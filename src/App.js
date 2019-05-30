@@ -1,8 +1,9 @@
 import React from "react";
 import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
-
+import Search from "./components/SearchComponent/Search";
 import "./App.css";
+
 // Set Task In LocalStorage
 if (localStorage.getItem("tasks") === null) {
   localStorage.setItem("tasks", JSON.stringify([]));
@@ -16,8 +17,7 @@ class App extends React.Component {
     super();
     this.state = {
       tasks: this.getTasks(),
-      task: "",
-      search: ""
+      task: ""
     };
   }
 
@@ -115,7 +115,7 @@ class App extends React.Component {
             </div>
           </div>
 
-          <input onChange={this.search} placeholder="Search" />
+          <Search search={this.search}/>
         </div>
 
         <h2>Welcome to your Todo App!</h2>
