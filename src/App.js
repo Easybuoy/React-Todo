@@ -21,6 +21,9 @@ class App extends React.Component {
   };
 
   addTodo = () => {
+    if (this.state.task.length === 0) {
+      return;
+    }
     const newTask = {
       id: Date.now(),
       task: this.state.task,
@@ -48,22 +51,30 @@ class App extends React.Component {
     this.setState({ tasks: unCompletedTasks });
   };
 
+  keyUp = e => {
+    if (e.key === "Enter") {
+      this.addTodo();
+    }
+  };
+
   render() {
     return (
       <div className="app">
         <div className="info">
-          <p className="infoBox"
+          <p
+            className="infoBox"
             style={{
-              backgroundColor: "green",
+              backgroundColor: "green"
             }}
           />
           <p>Completed</p>
         </div>
 
         <div className="info">
-          <p className="infoBox"
+          <p
+            className="infoBox"
             style={{
-              backgroundColor: "#99621e",
+              backgroundColor: "#99621e"
             }}
           />
           <p>UnCompleted</p>
@@ -76,6 +87,7 @@ class App extends React.Component {
           addTodo={this.addTodo}
           task={this.state.task}
           clearCompleted={this.clearCompleted}
+          keyUp={this.keyUp}
         />
         <TodoList
           tasks={this.state.tasks}

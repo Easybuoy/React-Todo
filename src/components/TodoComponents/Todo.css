@@ -6,6 +6,7 @@
 .todoForm input {
   padding: 0.5rem 0.5rem;
   width: 20%;
+  font-size: 1rem;
 }
 
 .todoForm input:focus {
@@ -36,4 +37,5 @@
   padding: 1rem 2rem;
   color: #ffffff;
   margin: 1rem 3rem;
+  text-align: center;
 }

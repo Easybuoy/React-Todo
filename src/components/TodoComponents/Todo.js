@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Todo({ task, toggleCompleted }) {
+export default function Todo({ task, toggleCompleted, keyUp }) {
   const todoStyle = {
     cursor: "pointer",
     textDecoration: task.completed ? "line-through" : "none",
