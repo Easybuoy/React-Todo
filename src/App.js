@@ -48,6 +48,7 @@ class App extends React.Component {
       if (task.id === id) {
         task.completed = !task.completed ? true : false;
       }
+      return task;
     });
 
     this.setDataToLocalStorage(tasks);
