@@ -3,6 +3,10 @@ import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
 
 import "./App.css";
+// Set Task In LocalStorage
+if (localStorage.getItem("tasks") === null) {
+  localStorage.setItem("tasks", JSON.stringify([]));
+}
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -11,7 +15,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      tasks: [],
+      tasks: JSON.parse(localStorage.getItem("tasks")),
       task: ""
     };
   }
@@ -30,7 +34,12 @@ class App extends React.Component {
       completed: false
     };
     const newStateTasks = this.state.tasks.concat(newTask);
+    this.setDataToLocalStorage(newStateTasks);
     this.setState({ tasks: newStateTasks, task: "" });
+  };
+
+  setDataToLocalStorage = data => {
+    localStorage.setItem("tasks", JSON.stringify(data));
   };
 
   toggleCompleted = id => {
@@ -41,6 +50,7 @@ class App extends React.Component {
       }
     });
 
+    this.setDataToLocalStorage(tasks);
     this.setState({ tasks: tasks });
   };
 
@@ -48,6 +58,7 @@ class App extends React.Component {
     const { tasks } = this.state;
     let unCompletedTasks = tasks.filter(task => task.completed !== true);
 
+    this.setDataToLocalStorage(unCompletedTasks);
     this.setState({ tasks: unCompletedTasks });
   };
 
